@@ -1,6 +1,8 @@
 # React Native
 react-native: 0.61.5
 
+react-native-svg: ^9.13.3
+
 [react-native-svg - npm] (https://www.npmjs.com/package/react-native-svg#common-props)
 
 [jackmew/react-native-svg-flagkit: SVG flag for react-native] (https://github.com/jackmew/react-native-svg-flagkit)
