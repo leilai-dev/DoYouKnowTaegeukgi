@@ -11,10 +11,21 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@eva-design/eva": "^1.3.0",
+    "@eva-design/processor": "^1.3.0",
+    "@ui-kitten/components": "^4.3.1",
+    "@ui-kitten/eva-icons": "^4.3.0",
     "react": "16.9.0",
     "react-native": "0.61.5",
+    "react-native-gesture-handler": "^1.5.2",
+    "react-native-raw-bottom-sheet": "^2.0.6",
+    "react-native-reanimated": "^1.4.0",
+    "react-native-screens": "^2.0.0-alpha.16",
     "react-native-svg": "^9.13.3",
-    "react-native-svg-flagkit": "^0.9.5"
+    "react-native-svg-flagkit": "^0.9.5",
+    "react-native-vector-icons": "^6.6.0",
+    "react-navigation": "^4.0.10",
+    "react-navigation-stack": "^1.10.3"
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
