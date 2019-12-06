@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.doyouknowtaegeukgi">
+  package="com.soledot.doyouknowtaegeukgi">
 
     <uses-permission android:name="android.permission.INTERNET" />
 

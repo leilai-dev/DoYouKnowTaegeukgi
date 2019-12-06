@@ -1,4 +1,4 @@
-package com.doyouknowtaegeukgi;
+package com.soledot.doyouknowtaegeukgi;
 
 import android.app.Application;
 import android.content.Context;
