@@ -63,3 +63,4 @@ buck-out/
 .*.md
 gradle.properties
 *.hprof
+android/app/google-services.json

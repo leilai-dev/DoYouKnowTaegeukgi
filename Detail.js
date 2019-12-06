@@ -2,6 +2,14 @@ import React from 'react';
 import { SafeAreaView } from 'react-navigation';
 // import { Divider, Icon, Layout, Text, TopNavigation, TopNavigationAction } from '@ui-kitten/components';
 import { View, Text, Button } from 'react-native';
+
+import crashlytics from '@react-native-firebase/crashlytics';
+
+function forceCrash() {
+  crashlytics().log('Testing crash');
+  crashlytics().crash();
+}
+
 const BackIcon = (style) => (
   <Icon {...style} name='arrow-back' />
 );
@@ -9,6 +17,7 @@ const BackIcon = (style) => (
 export const DetailsScreen = ({ navigation }) => {
 
   const navigateBack = () => {
+    forceCrash();
     navigation.goBack();
   };
 

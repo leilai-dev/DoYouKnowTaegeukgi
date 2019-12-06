@@ -10,6 +10,12 @@ buildscript {
     repositories {
         google()
         jcenter()
+
+        // for crashlytics
+        // [Android Setup | React Native Firebase | Invertase] (https://invertase.io/oss/react-native-firebase/v6/crashlytics/android-setup#add-fabric-gradle-tools)
+        maven {
+            url 'https://maven.fabric.io/public'
+        }
     }
     dependencies {
         classpath("com.android.tools.build:gradle:3.4.2")
@@ -20,6 +26,8 @@ buildscript {
         // Firebase 연동을 위해 추가
         classpath 'com.google.gms:google-services:4.2.0'
 
+        // for crashlytics
+        classpath 'io.fabric.tools:gradle:1.28.1'
     }
 }
 
