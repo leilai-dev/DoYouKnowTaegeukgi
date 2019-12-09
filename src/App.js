@@ -4,6 +4,8 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { mapping, light as theme } from '@eva-design/eva';
 import { AppNavigator } from './screens/Navigation';
 import Main from './screens/Main';
+import KeepAwake from 'react-native-keep-awake';
+
 // import { firebase } from '@react-native-firebase/analytics'
 
 
@@ -13,6 +15,7 @@ const App = () => (
     <IconRegistry icons={EvaIconsPack} />
     <ApplicationProvider mapping={mapping} theme={theme}>
       <Main />
+      <KeepAwake />
     </ApplicationProvider>
   </React.Fragment>
 );
