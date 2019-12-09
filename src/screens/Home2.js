@@ -17,8 +17,8 @@ import {
 import FAIcon from "react-native-vector-icons/FontAwesome";
 import MDIcon from "react-native-vector-icons/MaterialIcons";
 import RBSheet from "react-native-raw-bottom-sheet";
-import data from "./static.json";
-import Modal from 'react-native-modal';
+import data from "./staticArray.json";
+// import Modal from 'react-native-modal';
 
 FAIcon.loadFont();
 MDIcon.loadFont();
@@ -57,7 +57,7 @@ class App extends Component {
           </TouchableOpacity>
         </View>
 
-        <Button testID={'modal-open-button'} onPress={this.open} title="Open" />
+        {/* <Button testID={'modal-open-button'} onPress={this.open} title="Open" />
 
         <Modal
           testID={'modal'}
@@ -80,7 +80,7 @@ class App extends Component {
             <Text>Hi 👋!</Text>
             <Button testID={'close-button'} onPress={this.close} title="Close" />
           </View>
-        </Modal>
+        </Modal> */}
 
         {/* List Menu */}
         <RBSheet
@@ -143,11 +143,6 @@ class App extends Component {
               ))}
             </View>
             <Button title="Sample" onPress={() => this.Scrollable.close()}></Button>
-            <Button title="Sample"></Button>
-            <Button title="Sample"></Button>
-            <Button title="Sample"></Button>
-            <Button title="Sample"></Button>
-            <Button title="Sample"></Button>
           </ScrollView>
         </RBSheet>
 

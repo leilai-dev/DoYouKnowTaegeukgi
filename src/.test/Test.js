@@ -1,12 +1,21 @@
 import React from 'react';
 import {
   SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  TextInput,
+  TouchableOpacity,
+  Button,
   View,
   StatusBar,
   Text,
   Dimensions,
 } from 'react-native';
-import { Flag } from 'react-native-svg-flagkit';
+// import { Flag } from 'react-native-svg-flagkit';
+// import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
+import FAIcon from "react-native-vector-icons/FontAwesome";
+// import RBSheet from "react-native-raw-bottom-sheet";
+// import data from "./staticArray.json";
 
 let { height, width } = Dimensions.get('window');
 const OFFSET = width / 2 - height / 2
@@ -16,8 +25,22 @@ class Test extends React.Component {
       <>
         <StatusBar hidden />
         <SafeAreaView style={{ height: '100%', backgroundColor: 'white' }}>
-          <Flag
-            id={'KR'}
+          {/* <BannerAd
+            unitId={TestIds.BANNER}
+            size={BannerAdSize.FULL_BANNER}
+            requestOptions={{
+              requestNonPersonalizedAdsOnly: true,
+            }}
+            onAdLoaded={() => {
+              console.log('Advert loaded');
+            }}
+            onAdFailedToLoad={(error) => {
+              console.error('Advert failed to load: ', error);
+            }}
+          /> */}
+
+          {/* <Flag
+            id={'TW'}
             width={height + 1} height={width + 1}
             style={{
               transform: [
@@ -27,8 +50,9 @@ class Test extends React.Component {
               ],
               backgroundColor: 'black',
             }}
-          />
-          {/* <SvgComponent width={`${height + 1}`} height={`${width + 1}`}
+          /> */}
+          {/* <TouchableOpacity onPress={() => this.Scrollable.open()}> */}
+          <SvgComponent onPress={() => this.Scrollable.open()} width={`${height + 1}`} height={`${width + 1}`}
             style={{
               transform: [
                 { rotateZ: '-90deg' },
@@ -36,7 +60,48 @@ class Test extends React.Component {
                 { translateY: OFFSET }
               ],
               backgroundColor: 'black',
-            }} /> */}
+            }} />
+          {/* </TouchableOpacity> */}
+
+          {/* Grid Menu */}
+          <RBSheet
+            ref={ref => {
+              this.Scrollable = ref;
+            }}
+            animationType="fade"
+            height={height / 2}
+            closeOnDragDown
+            customStyles={{
+              container: {
+                backgroundColor: "transparent",
+                borderTopLeftRadius: 10,
+                borderTopRightRadius: 10
+              }
+            }}
+            duration={100}
+          >
+            <ScrollView>
+              <View style={styles.inputContainer}>
+                <TextInput style={styles.input} placeholder="Write a comment..." />
+              </View>
+              <View style={styles.gridContainer}>
+                {data.grids.map(grid => (
+                  <TouchableOpacity
+                    key={grid.icon}
+                    onPress={() => this.Scrollable.close()}
+                    style={styles.gridButtonContainer}
+                  >
+                    <View style={[styles.gridButton, { backgroundColor: grid.color }]}>
+                      <FAIcon name={grid.icon} style={styles.gridIcon} />
+                    </View>
+                    <Text style={styles.gridLabel}>{grid.label}</Text>
+                  </TouchableOpacity>
+                ))}
+              </View>
+              <Button title="Sample" onPress={() => this.Scrollable.close()}></Button>
+            </ScrollView>
+          </RBSheet>
+
         </SafeAreaView>
       </>
     )
@@ -59,3 +124,42 @@ const SvgComponent = props => (
 )
 
 export default Test;
+
+const styles = StyleSheet.create({
+  gridContainer: {
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    padding: 10,
+    marginBottom: 20
+  },
+  gridButtonContainer: {
+    flexBasis: "25%",
+    marginTop: 20,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  gridButton: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  gridIcon: {
+    fontSize: 30,
+    color: "white"
+  },
+  gridLabel: {
+    fontSize: 14,
+    paddingTop: 10,
+    color: "#333"
+  },
+  inputContainer: {
+    borderTopWidth: 1.5,
+    borderTopColor: "#ccc",
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 10
+  },
+});

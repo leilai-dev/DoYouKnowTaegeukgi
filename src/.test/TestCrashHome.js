@@ -14,8 +14,11 @@ import {
 } from 'react-native';
 
 import FAIcon from "react-native-vector-icons/FontAwesome";
-import RBSheet from "react-native-raw-bottom-sheet";
-import data from "./staticArray.json";
+import RBSheet from "../components/RBSheet";
+import { Flag } from '../components/Flagkit';
+import data from "../screens/staticArray.json";
+
+import RBContainer from '../components/RBContainer';
 
 let { height, width } = Dimensions.get('window');
 const OFFSET = width / 2 - height / 2
@@ -30,7 +33,10 @@ class Test extends React.Component {
       <>
         <StatusBar hidden />
         <SafeAreaView style={{ height: '100%', backgroundColor: 'white' }}>
-          <SvgComponent onPress={() => this.Scrollable.open()} width={`${height + 1}`} height={`${width + 1}`}
+          <Flag
+            id={'KR'}
+            onPress={() => this.Scrollable.open()}
+            width={height + 1} height={width + 1}
             style={{
               transform: [
                 { rotateZ: '-90deg' },
@@ -38,8 +44,19 @@ class Test extends React.Component {
                 { translateY: OFFSET }
               ],
               backgroundColor: 'black',
-            }} />
-          {/* </TouchableOpacity> */}
+            }}
+          />
+          {/* <SvgComponent onPress={() => this.Scrollable.open()} width={`${height + 1}`} height={`${width + 1}`}
+            style={{
+              transform: [
+                { rotateZ: '-90deg' },
+                { translateX: OFFSET },
+                { translateY: OFFSET }
+              ],
+              backgroundColor: 'black',
+            }} /> */}
+
+          {/* RBContainer에서 설정한 값을 받아오는 텍스트 표시 컴포넌트 작성 */}
 
           {/* Grid Menu */}
           <RBSheet
@@ -58,7 +75,8 @@ class Test extends React.Component {
             }}
             duration={100}
           >
-            <ScrollView>
+            <RBContainer />
+            {/* <ScrollView>
               <View style={styles.inputContainer}>
                 <TextInput style={styles.input} placeholder="Write a comment..." />
               </View>
@@ -77,8 +95,8 @@ class Test extends React.Component {
                 ))}
               </View>
               <Button title="Sample" onPress={() => this.Scrollable.close()}></Button>
-              <Button title='DETAILS' onPress={this.navigateDetails}></Button>
-            </ScrollView>
+              <Button title='DETAILS' onPress={() => { this.Scrollable.close(); this.navigateDetails() }}></Button>
+            </ScrollView> */}
           </RBSheet>
 
         </SafeAreaView>
