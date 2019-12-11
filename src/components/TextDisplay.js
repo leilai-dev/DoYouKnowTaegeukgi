@@ -138,9 +138,20 @@ export default class HSNZ extends Component {
     this.isPlay = true;
   }
 
+  // componentDidUpdate(prevProps) {
+  //   console.log(prevProps, "||", this.props);
+  // }
+
+  componentWillUnmount(p) {
+    console.log(this.isPlay);
+    this.isPlay = false;
+    this.stop();
+    // this.reUpdate();
+  }
+
   render() {
-    this.reUpdate();
-    console.log('contentWidth > ', this.contentWidth)
+    // this.reUpdate();
+    // console.log('contentWidth > ', this.contentWidth)
     return (
       <View
         style={[this.props.style, { position: 'relative', overflow: 'hidden' }]}

@@ -13,6 +13,10 @@ import styles from "./styles";
 
 // import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 import SmartBannerAd from '../../utils/firebase/BannerAd';
+import { Flag } from '../Flagkit';
+
+// 모달 backdrop 영역 UI 구성
+import { Button, Layout, Input, Icon, IconProp } from '@ui-kitten/components';
 
 const SUPPORTED_ORIENTATIONS = [
   "portrait",
@@ -101,6 +105,7 @@ class RBSheet extends Component {
     this.setState({ adTopPosition: -1000 });
   }
 
+
   render() {
     const {
       animationType,
@@ -130,6 +135,38 @@ class RBSheet extends Component {
           }}
         >
           <SmartBannerAd />
+          <View style={{
+            // flex: 1,
+            // alignItems: 'flex-end',
+            justifyContent: 'space-between',
+            flexDirection: 'row-reverse',
+            // flexWrap: 'wrap',
+          }}>
+            <TouchableOpacity style={{
+              justifyContent: 'flex-start',
+              flexDirection: 'row-reverse',
+              alignItems: 'center',
+              padding: 8
+            }}>
+              <Icon
+                name='globe-outline'
+                width={32}
+                height={32}
+              // fill='#FF7E6D'
+              />
+              <Icon name='swap' width={24} height={24}
+                style={{ left: 6, zIndex: 1, }}
+              />
+              <Flag id='TW' width={28} height={28}
+                style={{ left: 8 }}
+              />
+            </TouchableOpacity>
+            <Button
+              appearance='ghost'
+              icon={SettingIcon}
+            />
+
+          </View>
           <KeyboardAvoidingView
             enabled={Platform.OS === "ios"}
             behavior="padding"
@@ -190,3 +227,12 @@ RBSheet.defaultProps = {
 };
 
 export default RBSheet;
+
+const SettingIcon = (style) => (
+  <Icon
+    name='settings-2'
+    width={38}
+    height={38}
+    animation='shake'
+  />
+)

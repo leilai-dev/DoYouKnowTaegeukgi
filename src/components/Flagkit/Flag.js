@@ -44,7 +44,7 @@ export default class Flag extends Component {
         }
         return (
             <Image
-                style={{ width: width * size, height: height * size }}
+                style={{ width: width * size, height: height * size, marginHorizontal: 8 }}
                 source={flag}
             />
         )

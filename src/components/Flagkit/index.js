@@ -713,37 +713,37 @@ export const flagSvgs = [
     component: Gb,
     img: require('./PNG/GB.png'),
   },
-  {
-    code: 'GB-ENG',
-    region: 'United Kingdom',
-    component: GbEng,
-    img: require('./PNG/GB-ENG.png'),
-  },
-  {
-    code: 'GB-NIR',
-    region: 'United Kingdom',
-    // component: GbNir
-    component: null,
-    img: require('./PNG/GB-NIR.png'),
-  },
-  {
-    code: 'GB-SCT',
-    region: 'United Kingdom',
-    component: GbSct,
-    img: require('./PNG/GB-SCT.png'),
-  },
-  {
-    code: 'GB-WLS',
-    region: 'United Kingdom',
-    component: GbWls,
-    img: require('./PNG/GB-WLS.png'),
-  },
-  {
-    code: 'GB-ZET',
-    region: 'United Kingdom',
-    component: GbZet,
-    img: require('./PNG/GB-ZET.png'),
-  },
+  // {
+  //   code: 'GB-ENG',
+  //   region: 'United Kingdom',
+  //   component: GbEng,
+  //   img: require('./PNG/GB-ENG.png'),
+  // },
+  // {
+  //   code: 'GB-NIR',
+  //   region: 'United Kingdom',
+  //   // component: GbNir
+  //   component: null,
+  //   img: require('./PNG/GB-NIR.png'),
+  // },
+  // {
+  //   code: 'GB-SCT',
+  //   region: 'United Kingdom',
+  //   component: GbSct,
+  //   img: require('./PNG/GB-SCT.png'),
+  // },
+  // {
+  //   code: 'GB-WLS',
+  //   region: 'United Kingdom',
+  //   component: GbWls,
+  //   img: require('./PNG/GB-WLS.png'),
+  // },
+  // {
+  //   code: 'GB-ZET',
+  //   region: 'United Kingdom',
+  //   component: GbZet,
+  //   img: require('./PNG/GB-ZET.png'),
+  // },
   {
     code: 'GD',
     region: 'Grenada',
