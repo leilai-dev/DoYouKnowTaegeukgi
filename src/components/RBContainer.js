@@ -22,27 +22,6 @@ const RBContainer = (props) => {
     props.navigation.navigate('FlagList');
   };
 
-  const switchSizeButtonAppearance = (textSize) => {
-    switch (textSize) {
-      case 0.2:
-        return 'filled'
-      case 0.4:
-        return 'filled'
-      case 0.6:
-        return 'filled'
-      case 0.8:
-        return 'filled'
-      case 1:
-        return 'filled'
-      default:
-        return 'outline';
-    }
-  }
-
-  const onIconPress = () => {
-
-  }
-
   const renderIcon = (style) => (
     <Icon {...style} fill='#232323' name="edit-2-outline" />
   )
@@ -203,27 +182,7 @@ const RBContainer = (props) => {
         }
       </Store.Consumer>
 
-      {/* 텍스트 크기 / 색상 / 효과 / 아웃라인 / 포지션 */}
-      {/* 텍스트 이동 속도 */}
-      {/* <View style={styles.inputContainer}>
-        <TextInput style={styles.input} placeholder="Write a comment..." />
-      </View>
-      <View style={styles.gridContainer}>
-        {data.grids.map(grid => (
-          <TouchableOpacity
-            key={grid.icon}
-            onPress={() => this.Scrollable.close()}
-            style={styles.gridButtonContainer}
-          >
-            <View style={[styles.gridButton, { backgroundColor: grid.color }]}>
-              <FAIcon name={grid.icon} style={styles.gridIcon} />
-            </View>
-            <Text style={styles.gridLabel}>{grid.label}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
-      <Button title="Sample" onPress={() => this.Scrollable.close()}></Button>
-      <Button title='DETAILS' onPress={() => { this.Scrollable.close(); this.navigateDetails() }}></Button> */}
+      {/* 배경 색상 / 알파 / 텍스트 색상 / 효과 - 볼드, 아웃라인, ...  */}
 
     </ScrollView>
   )

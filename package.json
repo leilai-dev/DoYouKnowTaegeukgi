@@ -11,6 +11,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@bam.tech/react-native-make": "^1.0.3",
     "@eva-design/eva": "^1.3.0",
     "@eva-design/processor": "^1.3.0",
     "@react-native-firebase/admob": "^6.1.0",
@@ -22,6 +23,7 @@
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-gesture-handler": "^1.5.2",
+    "react-native-iap": "^4.3.2",
     "react-native-keep-awake": "^4.0.0",
     "react-native-reanimated": "^1.4.0",
     "react-native-screens": "^2.0.0-alpha.16",
