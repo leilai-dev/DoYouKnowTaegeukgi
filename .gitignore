@@ -62,3 +62,9 @@ buck-out/
 # Custom
 .*.md
 gradle.properties
+*.hprof
+android/app/google-services.json
+
+googleServiceConfig.js
+
+firebase.json

@@ -1,4 +1,4 @@
-package com.doyouknowtaegeukgi;
+package com.soledot.doyouknowtaegeukgi;
 
 import com.facebook.react.ReactActivity;
 
