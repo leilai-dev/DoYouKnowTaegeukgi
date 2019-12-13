@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { SafeAreaView, Image } from 'react-native';
 import {
   Layout, Input, Icon, ButtonGroup,
@@ -6,8 +6,11 @@ import {
   ListItem,
   Button,
 } from '@ui-kitten/components';
+import { NavigationContext } from 'react-navigation';
 
 import { flagSvgs, Flag } from '../components/Flagkit'
+
+import { FlagCodeContext } from '../contexts/FlagCodeContext';
 
 const data = flagSvgs.map((elem) =>
   ({
@@ -17,25 +20,21 @@ const data = flagSvgs.map((elem) =>
   })
 );
 
-// const data = new Array(10).fill({ title: 'Country Name' })
-// /* 
-// [{
-//   // code: 'AD',
-//   // region: 'Andorra',
-//   // component: Ad,
-//   // img: require('./PNG/AD.png')
-// }, ...]
-// */
-
-
 export const FlagListScreen = ({ navigation }) => {
   // console.log(navigation)
   // console.log(data);
-  const renderItemAccessory = (style) => (
+  const { setCountryCode } = useContext(FlagCodeContext);
+  // const navigation = useContext(NavigationContext);
+
+  const renderItemAccessory = (countryCode) => (
     <Button
       style={{
         fontSize: 24,
-        ...style
+      }}
+      onPress={() => {
+        console.log(countryCode)
+        setCountryCode(countryCode)
+        navigation.goBack();
       }}
     >선택</Button>
   );
@@ -77,7 +76,7 @@ export const FlagListScreen = ({ navigation }) => {
 
         }}
         title={`${item.countryName}`}
-        accessory={renderItemAccessory}
+        accessory={() => renderItemAccessory(item.countryCode)}
         icon={() => countryFlag(item.countryCode)}
       />
     )

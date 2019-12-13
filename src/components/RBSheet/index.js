@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useContext } from "react";
 import PropTypes from "prop-types";
 import {
   View,
@@ -11,9 +11,12 @@ import {
 } from "react-native";
 import styles from "./styles";
 
+import { withNavigation } from 'react-navigation';
+
 // import { BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 import SmartBannerAd from '../../utils/firebase/BannerAd';
 import { Flag } from '../Flagkit';
+import RBCButton from '../RBCButton';
 
 // 모달 backdrop 영역 UI 구성
 import { Button, Layout, Input, Icon, IconProp } from '@ui-kitten/components';
@@ -142,30 +145,12 @@ class RBSheet extends Component {
             flexDirection: 'row-reverse',
             // flexWrap: 'wrap',
           }}>
-            <TouchableOpacity style={{
-              justifyContent: 'flex-start',
-              flexDirection: 'row-reverse',
-              alignItems: 'center',
-              padding: 8
-            }}>
-              <Icon
-                name='globe-outline'
-                width={32}
-                height={32}
-              // fill='#FF7E6D'
-              />
-              <Icon name='swap' width={24} height={24}
-                style={{ left: 6, zIndex: 1, }}
-              />
-              <Flag id='TW' width={28} height={28}
-                style={{ left: 8 }}
-              />
-            </TouchableOpacity>
+            <RBCButton close={() => this.close()} />
+
             <Button
               appearance='ghost'
               icon={SettingIcon}
             />
-
           </View>
           <KeyboardAvoidingView
             enabled={Platform.OS === "ios"}

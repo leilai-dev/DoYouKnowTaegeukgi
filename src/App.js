@@ -6,9 +6,11 @@ import { AppNavigator } from './screens/Navigation';
 import KeepAwake from 'react-native-keep-awake';
 
 import Store from './store';
+import ContextsProvider from './contexts';
 
-// import { firebase } from '@react-native-firebase/analytics'
+import { firebase, } from '@react-native-firebase/admob';
 
+// import { firebaseApp } from './utils/firebase/initializer';
 /* 
   TODO:
   - firebase analytics 이벤트 정의
@@ -23,7 +25,6 @@ import Store from './store';
 
 */
 
-// firebase.initializeApp()
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -49,6 +50,7 @@ export default class App extends Component {
       backgroundAlpha: 0.3, // 0~1
       changeBackgroundAlpha: this._changeBackgroundAlpha,
 
+      // FlagCodeContext로 이동
       countryCode: 'KR',
       changeCountryCode: this._changeCountryCode,
 
@@ -58,6 +60,10 @@ export default class App extends Component {
       // 구매 복원의 경우?
 
     }
+  }
+
+  componentDidMount() {
+    console.log(firebase.apps);
   }
 
   _textDisplayToggle = () => {
@@ -127,13 +133,15 @@ export default class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Store.Provider value={this.state}>
-          <IconRegistry icons={EvaIconsPack} />
-          <ApplicationProvider mapping={mapping} theme={theme}>
-            <AppNavigator />
-            <KeepAwake />
-          </ApplicationProvider>
-        </Store.Provider>
+        <ContextsProvider>
+          <Store.Provider value={this.state}>
+            <IconRegistry icons={EvaIconsPack} />
+            <ApplicationProvider mapping={mapping} theme={theme}>
+              <AppNavigator />
+              <KeepAwake />
+            </ApplicationProvider>
+          </Store.Provider>
+        </ContextsProvider>
       </React.Fragment>
     );
   }
