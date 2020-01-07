@@ -68,3 +68,7 @@ android/app/google-services.json
 googleServiceConfig.js
 
 firebase.json
+
+# for google spreadsheets, i18n importer
+credentials.json
+token.json

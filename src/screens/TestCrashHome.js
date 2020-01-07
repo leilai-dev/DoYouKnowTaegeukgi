@@ -57,14 +57,16 @@ export default TestCrashHome = (props) => {
               this.Scrollable = ref;
             }}
             animationType="fade"
-            height={height / 2}
+            height={(height / 5) * 3}
             closeOnDragDown
             customStyles={{
               container: {
                 backgroundColor: "transparent",
-                borderTopLeftRadius: 10,
-                borderTopRightRadius: 10,
-                borderWidth: 5,
+                borderTopLeftRadius: 20,
+                borderTopRightRadius: 20,
+                borderLeftWidth: 2,
+                borderRightWidth: 2,
+                borderColor: '#3366FF'
               }
             }}
             duration={100}

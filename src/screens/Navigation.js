@@ -13,22 +13,27 @@ const HomeNavigator = createStackNavigator({
     screen: TestCrashHome,
     navigationOptions: {
       headerShown: false
-
     }
   },
-  Details: DetailsScreen,
+  Settings: DetailsScreen,
   FlagList: {
     screen: FlagListScreen,
     navigationOptions: {
       title: 'Flag List',
-      // headerShown: true
-
       // header: TopNavigation,
       // headerMode: 'screen'
     }
   }
 }, {
   headerMode: 'screen',
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: '#3366FF',
+      color: '#EDF1F7'
+    },
+    headerTintColor: '#EDF1F7',
+    headerTitleStyle: { color: '#EDF1F7' },
+  }
 });
 
 export const AppNavigator = createAppContainer(HomeNavigator);

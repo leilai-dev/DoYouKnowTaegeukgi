@@ -1,12 +1,11 @@
-import React, { useContext } from 'react';
-import { SafeAreaView, Image } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { SafeAreaView } from 'react-native';
 import {
-  Layout, Input, Icon, ButtonGroup,
+  Layout, Input,
   List,
   ListItem,
   Button,
 } from '@ui-kitten/components';
-import { NavigationContext } from 'react-navigation';
 
 import { flagSvgs, Flag } from '../components/Flagkit'
 
@@ -21,10 +20,9 @@ const data = flagSvgs.map((elem) =>
 );
 
 export const FlagListScreen = ({ navigation }) => {
-  // console.log(navigation)
-  // console.log(data);
   const { setCountryCode } = useContext(FlagCodeContext);
-  // const navigation = useContext(NavigationContext);
+  const [countryName, setCountryName] = useState('');
+  const [filterData, setFilterData] = useState([]);
 
   const renderItemAccessory = (countryCode) => (
     <Button
@@ -32,7 +30,6 @@ export const FlagListScreen = ({ navigation }) => {
         fontSize: 24,
       }}
       onPress={() => {
-        console.log(countryCode)
         setCountryCode(countryCode)
         navigation.goBack();
       }}
@@ -51,29 +48,11 @@ export const FlagListScreen = ({ navigation }) => {
     </Layout>
   )
 
-  // const RemoteStarIcon = (test) => {
-  //   console.log(test);
-  //   return (
-  //     <Image
-  //       // style={style}
-  //       source={{ uri: 'https://akveo.github.io/eva-icons/fill/png/128/star.png' }}
-  //     />
-  //   )
-  // }
-
   const renderItem = ({ item }) => {
-    // console.log(item)
     return (
-
       <ListItem
-        style={{
-          // justifyContent: 'space-between'
-
-        }}
         titleStyle={{
-          fontSize: 24,
-          // alignItems: 'center'
-
+          fontSize: 20,
         }}
         title={`${item.countryName}`}
         accessory={() => renderItemAccessory(item.countryCode)}
@@ -84,10 +63,36 @@ export const FlagListScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-      <List
-        data={data}
-        renderItem={renderItem}
+      <Input
+        textStyle={{ fontSize: 20 }}
+        placeholder={'국가 검색 (English only)'}
+        onChangeText={(e) => {
+          setCountryName(e);
+          setFilterData(data.filter(elem => elem.countryName.includes(countryName)));
+        }}
+        onSubmitEditing={(e) => {
+          setFilterData(data.filter(elem => elem.countryName.toLowerCase().includes(countryName.toLowerCase())));
+        }}
       />
+      {
+        countryName.length === 0 && filterData.length === 0
+          ? <List
+            data={data}
+            renderItem={renderItem}
+          />
+          : filterData.length === 0
+            ? <ListItem
+              title='No search result'
+              titleStyle={{
+                fontSize: 20, textAlign: 'center'
+              }}
+            />
+            : <List
+              data={filterData}
+              renderItem={renderItem}
+            />
+      }
+      {/* 검색 결과 없습니다 만들까? */}
     </SafeAreaView>
   );
 }

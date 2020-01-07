@@ -1,0 +1,10 @@
+{
+  "test": {
+    "nested": {
+      "key": "nested"
+    }
+  },
+  "main": {
+    "firstText": "Touch the screen to edit the text."
+  }
+}

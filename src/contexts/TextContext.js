@@ -6,15 +6,18 @@ import React, { createContext, useState } from "react";
 // TextDisplayArea, RBContainer (UI)
 export const TextContext = createContext(null);
 
-export default FlagCodeProvider = (props) => {
+export const TextConsumer = TextContext.Consumer;
+
+export default TextProvider = (props) => {
   const [isTextDisplay, setTextDisplay] = useState(true);
   const [isTextLoop, setTextLoop] = useState(false);
   const [text, setText] = useState('화면을 터치하여 글 수정');
+  const [fontColor, setFontColor] = useState('black');
 
   const [loopSpeed, setLoopSpeed] = useState(10); // 2~40
   const [textPosition, setTextPosition] = useState('center'); // 'center', 'flex-end', 'flex-start', 'expand'
   const [fontSize, setFontSize] = useState(0.2); // 0.2 ~ 1 (5)
-  const [fontColor, setFontColor] = useState(''); // UI 미구현
+  const [backgroundAlpha, setBackgroundAlpha] = useState(0.3);
   return (
     <TextContext.Provider
       value={{
@@ -24,6 +27,7 @@ export default FlagCodeProvider = (props) => {
         loopSpeed, setLoopSpeed,
         textPosition, setTextPosition,
         fontSize, setFontSize,
+        backgroundAlpha, setBackgroundAlpha,
         fontColor, setFontColor,
       }}
     >
