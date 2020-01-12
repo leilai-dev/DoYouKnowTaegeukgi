@@ -150,7 +150,7 @@ export default class HSNZ extends Component {
   }
 
   render() {
-    // this.reUpdate();
+    this.reUpdate();
     // console.log('contentWidth > ', this.contentWidth)
     return (
       <View

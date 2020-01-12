@@ -6,15 +6,18 @@ const SmartBannerAd = (props) => (
   <View {...props}>
     <BannerAd
       unitId={TestIds.BANNER}
+      // unitId={`ca-app-pub-3538813092756784/7015732621`}
       size={BannerAdSize.SMART_BANNER}
       requestOptions={{
-        requestNonPersonalizedAdsOnly: true,
+        requestNonPersonalizedAdsOnly: false,
+        testDevices: ['EMULATOR'],
       }}
       onAdLoaded={() => {
         console.log('Advert loaded');
       }}
       onAdFailedToLoad={(error) => {
-        console.error('Advert failed to load: ', error);
+        console.log('BannerAd Error', error)
+        // console.error('Advert failed to load: ', error);
       }}
     />
   </View >

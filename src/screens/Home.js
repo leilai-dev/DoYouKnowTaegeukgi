@@ -3,29 +3,20 @@ import React, { useContext } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-  Button,
   View,
   StatusBar,
-  Text,
   Dimensions,
 } from 'react-native';
-
 import RBSheet from "../components/RBSheet";
 import { Flag } from '../components/Flagkit';
-
 import RBContainer from '../components/RBContainer';
-
 import TextDisplayArea from './TextDisplayArea';
-
 import { FlagCodeContext } from '../contexts/FlagCodeContext';
 
 let { height, width } = Dimensions.get('window');
 const OFFSET = width / 2 - height / 2
 
-export default TestCrashHome = (props) => {
+export const Home = (props) => {
   const { countryCode } = useContext(FlagCodeContext);
 
   navigateDetails = () => {
@@ -39,7 +30,6 @@ export default TestCrashHome = (props) => {
         <View style={styles.flagArea}>
           <Flag
             id={countryCode}
-            // onPress={() => this.Scrollable.open()}
             width={height + 1} height={width + 1}
             style={{
               transform: [
@@ -57,14 +47,16 @@ export default TestCrashHome = (props) => {
               this.Scrollable = ref;
             }}
             animationType="fade"
-            height={height / 2}
+            height={(height / 5) * 3}
             closeOnDragDown
             customStyles={{
               container: {
                 backgroundColor: "transparent",
-                borderTopLeftRadius: 10,
-                borderTopRightRadius: 10,
-                borderWidth: 5,
+                borderTopLeftRadius: 20,
+                borderTopRightRadius: 20,
+                borderLeftWidth: 2,
+                borderRightWidth: 2,
+                borderColor: '#3366FF'
               }
             }}
             duration={100}
