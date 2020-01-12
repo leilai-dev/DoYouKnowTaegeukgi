@@ -19,7 +19,8 @@ import { Flag } from '../Flagkit';
 import RBCButton from '../RBCButton';
 
 // 모달 backdrop 영역 UI 구성
-import { Button, Layout, Input, Icon, IconProp } from '@ui-kitten/components';
+import { Button, Layout, Input, IconProp } from '@ui-kitten/components';
+import Icon from 'react-native-vector-icons/AntDesign'
 
 const SUPPORTED_ORIENTATIONS = [
   "portrait",
@@ -139,18 +140,22 @@ class RBSheet extends Component {
         >
           <SmartBannerAd />
           <View style={{
-            // flex: 1,
-            // alignItems: 'flex-end',
             justifyContent: 'space-between',
             flexDirection: 'row-reverse',
-            // flexWrap: 'wrap',
+            backgroundColor: '#3366FF'
           }}>
             <RBCButton close={() => this.close()} />
 
-            <Button
-              appearance='ghost'
-              icon={SettingIcon}
-            />
+            <TouchableOpacity
+              style={{ left: -6, alignSelf: 'center' }}
+              onPress={() => { this.close(); this.props.children.props.navigation.navigate('Settings'); }}
+            >
+              <Icon
+                name='setting'
+                color='#EDF1F7'
+                size={38}
+              />
+            </TouchableOpacity>
           </View>
           <KeyboardAvoidingView
             enabled={Platform.OS === "ios"}
@@ -212,12 +217,3 @@ RBSheet.defaultProps = {
 };
 
 export default RBSheet;
-
-const SettingIcon = (style) => (
-  <Icon
-    name='settings-2'
-    width={38}
-    height={38}
-    animation='shake'
-  />
-)

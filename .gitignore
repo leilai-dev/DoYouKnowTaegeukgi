@@ -69,7 +69,8 @@ googleServiceConfig.js
 
 firebase.json
 
-android/app/release/
-src/utils/i18n/credentials.json
-src/utils/i18n/token.json
+# for google spreadsheets, i18n importer
+credentials.json
+token.json
 android/app/private_key.pepk
+android/app/release/

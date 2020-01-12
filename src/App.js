@@ -1,148 +1,77 @@
 import React, { Component } from 'react';
-import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
-import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { SafeAreaView, Text } from 'react-native';
+import { ApplicationProvider } from '@ui-kitten/components';
+// import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { mapping, light as theme } from '@eva-design/eva';
 import { AppNavigator } from './screens/Navigation';
 import KeepAwake from 'react-native-keep-awake';
 
-import Store from './store';
 import ContextsProvider from './contexts';
 
-import { firebase, } from '@react-native-firebase/admob';
+import { setI18nConfig, getCurrentLanguage, setCurrentLanguage } from '../src/utils/i18n'
+import * as RNLocalize from 'react-native-localize'
 
-// import { firebaseApp } from './utils/firebase/initializer';
-/* 
-  TODO:
-  - firebase analytics 이벤트 정의
-
-  - 국가별 정보 보기?
-  - RBSheet 메뉴 구성
-      - 폰트효과 전체적으로 bold 적용 가능, 그 외 아웃라인 등 시스템 폰트 사용하는 방향으로
-      - 효과 / 아웃라인 / 포지션 *
-    - 데이터 저장 스토어 / Context 구현
-
-  위 기능들 완료 후 git flow 버전 관리 진행하기
-
-*/
+import crashlytics from '@react-native-firebase/crashlytics';
+import SplashScreen from 'react-native-splash-screen'
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      // Provider / Consumer로 사용할 state value정의하기
-      // 메서드 및 텍스트 옵션 값 / firebase등?
-      isTextDisplay: true,
-      textDisplayToggle: this._textDisplayToggle,
-      isTextLoop: false,
-      textLoopDisabled: true,
-      textLoopToggle: this._textLoopToggle,
-      textMessage: '화면을 터치하여 글 수정',
-      onChangeTextMessage: this._onChangeTextMessage,
-      loopSpeed: 10, // 2, 5, 10, 20, 40 5단계
-      changeLoopSpeed: this._changeLoopSpeed,
-      textSize: 0.2, // 0.2, 0.4, 0.6, 0.8, 1 (5)
-      changeTextSize: this._changeTextSize,
-      textPosition: 'center', // 'center', 'flex-end', 'flex-start', 'expand' 
-      changeTextPosition: this._changeTextPosition,
-      backgroundColor: 'black', // 몇 종류 할지...
-      changeBackgroundColor: this._changeBackgroundColor,
-      backgroundAlpha: 0.3, // 0~1
-      changeBackgroundAlpha: this._changeBackgroundAlpha,
-
-      // FlagCodeContext로 이동
-      countryCode: 'KR',
-      changeCountryCode: this._changeCountryCode,
-
-      // i18n 고려시
-
-      // 구매 적용시, iap 상태 값 저장 어디에?
-      // 구매 복원의 경우?
-
+      isTranslationLoaded: false,
+      _error: '',
     }
+
+    setI18nConfig()
+      .then(async () => {
+        this.setState({ isTranslationLoaded: true })
+        SplashScreen.hide();
+        
+        RNLocalize.addEventListener('change', this.handleLocalizationChange)
+        // 언어 설정 Context 추가하기? > i18n이 한다
+        const { languageTag } = await getCurrentLanguage()
+        // console.log('setting', languageTag)
+        // setCurrentLanguage 하고
+      })
+      .catch(error => {
+        this.setState({ _error: error })
+        crashlytics().recordError(error);
+      })
   }
 
-  componentDidMount() {
-    console.log(firebase.apps);
+  componentWillUnmount() {
+    RNLocalize.removeEventListener('change', this.handleLocalizationChange)
   }
 
-  _textDisplayToggle = () => {
-    this.setState(prevState => ({
-      ...this.state,
-      isTextDisplay: !prevState.isTextDisplay,
-    })
-    )
+  handleLocalizationChange = () => {
+    setI18nConfig()
+      .then(() => this.forceUpdate())
+      .catch(error => {
+        crashlytics().recordError(error);
+      })
   }
 
-  _textLoopToggle = () => {
-    this.setState(prevState => ({
-      ...this.state,
-      isTextLoop: !prevState.isTextLoop,
-    })
-    )
-  }
-
-  _textLoopToggle = () => {
-    this.setState(prevState => ({
-      ...this.state,
-      isTextLoop: !prevState.isTextLoop,
-    })
-    )
-  }
-
-  // 최대 길이 검증 필요할수도
-  _onChangeTextMessage = (e) => {
-    // console.log(e);
-    this.setState({
-      textMessage: e
-    })
-  }
-
-  _changeLoopSpeed = (speed) => {
-    this.setState({
-      loopSpeed: speed
-    })
-  }
-
-  _changeTextSize = (size) => {
-    console.log(size);
-    this.setState({
-      // ...this.state,
-      textSize: size
-    })
-  }
-
-  _changeTextPosition = (position) => {
-    this.setState({
-      textPosition: position
-    })
-  }
-
-  _changeBackgroundColor = (color) => {
-    this.setState({
-      backgroundColor: color
-    })
-  }
-
-  _changeBackgroundAlpha = (alpha) => {
-    this.setState({
-      backgroundAlpha: alpha
-    })
-  }
+  // componentDidMount() {
+  //   console.log(firebase.apps);
+  // }
 
   render() {
-    return (
-      <React.Fragment>
-        <ContextsProvider>
-          <Store.Provider value={this.state}>
-            <IconRegistry icons={EvaIconsPack} />
+    const { isTranslationLoaded } = this.state;
+    return isTranslationLoaded
+      ? (
+        <React.Fragment>
+          <ContextsProvider>
             <ApplicationProvider mapping={mapping} theme={theme}>
               <AppNavigator />
               <KeepAwake />
             </ApplicationProvider>
-          </Store.Provider>
-        </ContextsProvider>
-      </React.Fragment>
-    );
+          </ContextsProvider>
+        </React.Fragment>
+      )
+      : (
+        <SafeAreaView style={{}}>
+          <Text>isError? : {this.state._error}</Text>
+        </SafeAreaView>
+      )
   }
 }

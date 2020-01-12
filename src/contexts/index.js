@@ -1,15 +1,16 @@
 import React from 'react';
 import FlagCodeProvider from './FlagCodeContext';
-// import TextContextProvider from './TextContext'; // 나중에
+import TextContextProvider from './TextContext';
+import LocalizeProvider from './LocalizeContext';
 
 export default ContextsProvider = (props) => {
   return (
-    // <TextContextProvider>
-
-    <FlagCodeProvider>
-      {props.children}
-    </FlagCodeProvider>
-
-    // </TextContextProvider>
+    <LocalizeProvider>
+      <TextContextProvider>
+        <FlagCodeProvider>
+          {props.children}
+        </FlagCodeProvider>
+      </TextContextProvider>
+    </LocalizeProvider>
   )
 }

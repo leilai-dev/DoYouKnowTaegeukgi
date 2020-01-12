@@ -1,35 +1,42 @@
 import React from 'react'
-import Svg, { Defs, LinearGradient, Stop, G, Path } from 'react-native-svg'
+import Svg, { Path, G, Use } from "react-native-svg"
 
-const SvgUs = props => (
-    <Svg viewBox="0 0 21 15" width={21} height={15} {...props}>
-        <Defs>
-            <LinearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="US_svg__a">
-                <Stop stopColor="#FFF" offset="0%" />
-                <Stop stopColor="#F0F0F0" offset="100%" />
-            </LinearGradient>
-            <LinearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="US_svg__b">
-                <Stop stopColor="#D02F44" offset="0%" />
-                <Stop stopColor="#B12537" offset="100%" />
-            </LinearGradient>
-            <LinearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="US_svg__c">
-                <Stop stopColor="#46467F" offset="0%" />
-                <Stop stopColor="#3C3C6D" offset="100%" />
-            </LinearGradient>
-        </Defs>
-        <G fill="none" fillRule="evenodd">
-            <Path fill="url(#US_svg__a)" d="M0 0h21v15H0z" />
-            <Path
-                d="M0 0h21v1H0V0zm0 2h21v1H0V2zm0 2h21v1H0V4zm0 2h21v1H0V6zm0 2h21v1H0V8zm0 2h21v1H0v-1zm0 2h21v1H0v-1zm0 2h21v1H0v-1z"
-                fill="url(#US_svg__b)"
-            />
-            <Path fill="url(#US_svg__c)" d="M0 0h9v7H0z" />
-            <Path
-                d="M1.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-5 1a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm1 1a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm1 1a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm1 1a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-2 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1z"
-                fill="url(#US_svg__a)"
-            />
+const SvgUs = props => {
+    return (
+        <Svg width={1235} height={650} viewBox="0 0 7410 3900" {...props}>
+        <Path fill="#b22234" d="M0 0h7410v3900H0z" />
+        <Path
+            d="M0 450h7410m0 600H0m0 600h7410m0 600H0m0 600h7410m0 600H0"
+            stroke="#fff"
+            strokeWidth={300}
+        />
+        <Path fill="#3c3b6e" d="M0 0h2964v2100H0z" />
+        <G fill="#fff">
+            <G id="prefix__d">
+            <G id="prefix__c">
+                <G id="prefix__e">
+                <G id="prefix__b">
+                    <Path
+                    id="prefix__a"
+                    d="M247 90l70.534 217.082-184.66-134.164h228.253L176.466 307.082z"
+                    />
+                    <Use xlinkHref="#prefix__a" y={420} />
+                    <Use xlinkHref="#prefix__a" y={840} />
+                    <Use xlinkHref="#prefix__a" y={1260} />
+                </G>
+                <Use xlinkHref="#prefix__a" y={1680} />
+                </G>
+                <Use xlinkHref="#prefix__b" x={247} y={210} />
+            </G>
+            <Use xlinkHref="#prefix__c" x={494} />
+            </G>
+            <Use xlinkHref="#prefix__d" x={988} />
+            <Use xlinkHref="#prefix__c" x={1976} />
+            <Use xlinkHref="#prefix__e" x={2470} />
         </G>
-    </Svg>
-)
+        </Svg>
+    )
+}
+  
 
 export default SvgUs
