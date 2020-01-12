@@ -1,27 +1,27 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import { TopNavigation } from '@ui-kitten/components'
-// import { HomeScreen } from './Test-reanimated-bottom-sheet';
-import TestCrashHome from './TestCrashHome';
-// import Home from './Home2';
-import { DetailsScreen } from './Detail';
+import {Home} from './Home';
+import { SettingScreen } from './SettingScreen';
 import { FlagListScreen } from './FlagListScreen';
 
 const HomeNavigator = createStackNavigator({
   Home: {
-    screen: TestCrashHome,
+    screen: Home,
     navigationOptions: {
       headerShown: false
     }
   },
-  Settings: DetailsScreen,
+  Settings: {
+    screen: SettingScreen,
+    navigationOptions: {
+      title: 'Settings'
+    }
+  },
   FlagList: {
     screen: FlagListScreen,
     navigationOptions: {
       title: 'Flag List',
-      // header: TopNavigation,
-      // headerMode: 'screen'
     }
   }
 }, {

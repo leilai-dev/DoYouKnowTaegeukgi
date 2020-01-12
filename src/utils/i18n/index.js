@@ -6,10 +6,11 @@ import memoize from 'lodash.memoize'; // Use for caching/memoize for better perf
 import storage from '../storage';
 import { I18nManager } from 'react-native';
 
+// languageTag 적용에 -(dash) 들어갈 경우 주의하기
 const translationGetters = {
   // lazy requires (metro bundler does not support symlinks)
   en: () => require('./translations/en.json'),
-  koKR: () => require('./translations/ko-KR.json')
+  'ko-KR': () => require('./translations/ko-KR.json')
 };
 
 export const setI18nConfig = async () => {
@@ -26,13 +27,15 @@ export const setI18nConfig = async () => {
 
 export const getCurrentLanguage = async () => {
   // fallback if no available language fits
-  const fallback = { languageTag: 'kr', isRTL: false };
+  const fallback = { languageTag: 'ko-KR', isRTL: false };
+
 
   let { languageTag, isRTL } =
     RNLocalize.findBestAvailableLanguage(Object.keys(translationGetters)) ||
     fallback;
 
-  // 로컬 storage에서 현재 설정된 언어 설정이 있을 경우 해당 언어 반영
+  // console.log(RNLocalize.findBestAvailableLanguage(Object.keys(translationGetters)), Object.keys(translationGetters));
+  // 로컬 storage에서 현재 설정된 언어 설정이 있을 경우 해당 언어 반영. 을 왜 여기서??
   const savedLanguage = await storage.get('languageTag');
   languageTag = savedLanguage || languageTag;
   console.log(languageTag)

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 import { ApplicationProvider } from '@ui-kitten/components';
 // import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { mapping, light as theme } from '@eva-design/eva';
@@ -8,25 +8,34 @@ import KeepAwake from 'react-native-keep-awake';
 
 import ContextsProvider from './contexts';
 
-import { setI18nConfig } from '../src/utils/i18n'
+import { setI18nConfig, getCurrentLanguage, setCurrentLanguage } from '../src/utils/i18n'
 import * as RNLocalize from 'react-native-localize'
 
-import { firebase, } from '@react-native-firebase/admob';
+import crashlytics from '@react-native-firebase/crashlytics';
+import SplashScreen from 'react-native-splash-screen'
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isTranslationLoaded: false
+      isTranslationLoaded: false,
+      _error: '',
     }
+
     setI18nConfig()
-      .then(() => {
+      .then(async () => {
         this.setState({ isTranslationLoaded: true })
+        SplashScreen.hide();
+        
         RNLocalize.addEventListener('change', this.handleLocalizationChange)
         // 언어 설정 Context 추가하기? > i18n이 한다
+        const { languageTag } = await getCurrentLanguage()
+        // console.log('setting', languageTag)
+        // setCurrentLanguage 하고
       })
       .catch(error => {
-        console.error(error)
+        this.setState({ _error: error })
+        crashlytics().recordError(error);
       })
   }
 
@@ -38,7 +47,7 @@ export default class App extends Component {
     setI18nConfig()
       .then(() => this.forceUpdate())
       .catch(error => {
-        console.error(error)
+        crashlytics().recordError(error);
       })
   }
 
@@ -60,7 +69,9 @@ export default class App extends Component {
         </React.Fragment>
       )
       : (
-        <SafeAreaView style={{}} />
+        <SafeAreaView style={{}}>
+          <Text>isError? : {this.state._error}</Text>
+        </SafeAreaView>
       )
   }
 }
