@@ -72,3 +72,5 @@ firebase.json
 # for google spreadsheets, i18n importer
 credentials.json
 token.json
+android/app/private_key.pepk
+android/app/release/

@@ -13,12 +13,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     width: "100%",
     height: 0,
-    overflow: "hidden"
+    overflow: "hidden",
+    alignItems: 'center'
   },
   draggableContainer: {
     width: "100%",
     alignItems: "center",
-    backgroundColor: "transparent"
+    // backgroundColor: "transparent"
+    backgroundColor: '#3366FF',
+    paddingBottom: 2,
+    marginBottom: 12,
   },
   draggableIcon: {
     width: 35,
