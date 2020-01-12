@@ -6,9 +6,31 @@ import { FlagCodeContext } from '../contexts/FlagCodeContext'
 import Icon from 'react-native-vector-icons/AntDesign'
 import { Flag } from './Flagkit';
 
+
+import { InterstitialAd, TestIds, AdEventType } from '@react-native-firebase/admob';
+
+const interstitial = InterstitialAd.createForAdRequest(TestIds.INTERSTITIAL, {
+  requestNonPersonalizedAdsOnly: false,
+});
+
+
+
 export default RBCButton = (props) => {
   const navigation = useContext(NavigationContext);
   const { countryCode } = useContext(FlagCodeContext);
+
+  const advert = InterstitialAd.createForAdRequest(TestIds.INTERSTITIAL, {
+    requestNonPersonalizedAdsOnly: false,});
+  // advert.onAdEvent((type) => {
+  //   if (type === AdEventType.LOADED) {
+  //     // interstitial.show();
+  //     console.log('loaded')
+  //   }
+  //   if (type === AdEventType.CLOSED) {
+  //     // advert.load();
+  //   }
+  // });
+  advert.load()
 
   return (
     <TouchableOpacity style={{
@@ -19,7 +41,10 @@ export default RBCButton = (props) => {
     }}
       onPress={() => {
         props.close();
-        setTimeout(() => navigation.navigate('FlagList'), 1000);
+        setTimeout(() => navigation.navigate('FlagList'), 300);
+
+        if (Math.random() < 0.2)
+          setTimeout(() => advert.show(), 500);
       }}
     >
       <Icon
