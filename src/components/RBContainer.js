@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react';
-import { ScrollView, TouchableWithoutFeedback } from 'react-native';
+import { ScrollView, TouchableWithoutFeedback, Image } from 'react-native';
 import {
   Button, Layout, Input, Toggle, Text, Radio,
   RadioGroup,
 } from '@ui-kitten/components';
 import Icon from 'react-native-vector-icons/AntDesign'
-
+import EntypoIcon from 'react-native-vector-icons/Entypo'
+import Slider from '@react-native-community/slider';
 import { TextContext } from '../contexts/TextContext';
 
 // const useToggleChanges = (initialCheck = false) => {
@@ -30,6 +31,8 @@ const RBContainer = (props) => {
     textPosition, setTextPosition,
     fontSize, setFontSize,
     fontColor, setFontColor,
+    backgroundAlpha, setBackgroundAlpha,
+    backgroundColor, setBackgroundColor,
   } = useContext(TextContext);
 
   const navigateDetails = () => {
@@ -53,10 +56,26 @@ const RBContainer = (props) => {
   const renderIcon = (style) => (
     <Icon fill='#232323' name="edit" size={24} />
   )
+
+  const icon1 = () => (
+    <EntypoIcon color='white' name="align-vertical-middle" size={24} />
+  )
+  const icon2 = () => (
+    <EntypoIcon color='white' name="align-top" size={24} />
+  )
+  const icon3 = () => (
+    <EntypoIcon color='white' name="align-bottom" size={24} />
+  )
+  const icon4 = (style) => (
+    <EntypoIcon color='white' name="resize-full-screen" size={24} />
+  )
+
+
+
   return (
     <ScrollView
       style={{
-        paddingBottom: 200,
+        paddingBottom: 130,
         width: '93%',
       }}
     >
@@ -276,18 +295,23 @@ const RBContainer = (props) => {
           <Button style={{}} size='giant' appearance={textPosition === 'center' ? 'filled' : 'outline'}
             onPress={() => setTextPosition('center')}
             disabled={!isTextDisplay || isTextLoop}
+            icon={icon1}
           ></Button>
           <Button style={{}} size='giant' appearance={textPosition === 'flex-end' ? 'filled' : 'outline'}
             onPress={() => setTextPosition('flex-end')}
             disabled={!isTextDisplay || isTextLoop}
+            icon={icon2}
           ></Button>
           <Button style={{}} size='giant' appearance={textPosition === 'flex-start' ? 'filled' : 'outline'}
             onPress={() => setTextPosition('flex-start')}
+            textStyle={{ textAlignVertical: 'bottom' }}
             disabled={!isTextDisplay || isTextLoop}
+            icon={icon3}
           ></Button>
           <Button style={{}} size='giant' appearance={textPosition === 'expand' ? 'filled' : 'outline'}
             onPress={() => setTextPosition('expand')}
             disabled={!isTextDisplay || isTextLoop}
+            icon={icon4}
           ></Button>
         </Layout>
       </TouchableWithoutFeedback>
@@ -302,9 +326,25 @@ const RBContainer = (props) => {
           alignItems: 'center',
           flexWrap: 'wrap',
           justifyContent: 'space-between',
-          backgroundColor: 'tranperant',
+          backgroundColor: '#3366FF',
+          borderRadius: 48,
           marginBottom: 48
         }}>
+          <Slider
+            style={{ width: '100%', height: 40 }}
+            value={backgroundAlpha}
+            onValueChange={(value) => {
+              clearTimeout(this.sliderTimeoutId)
+              this.sliderTimeoutId = setTimeout(() => {
+                setBackgroundAlpha(value)
+              }, 100)
+            }}
+            minimumValue={0}
+            maximumValue={1}
+            minimumTrackTintColor="#102694"
+            maximumTrackTintColor="#D9E4FF"
+            thumbTintColor="white"
+          />
         </Layout>
       </TouchableWithoutFeedback>
       {/* 배경 색상 / 알파 / 텍스트 색상 / 효과 - 볼드, 아웃라인, ...  */}

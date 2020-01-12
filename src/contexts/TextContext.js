@@ -18,6 +18,7 @@ export default TextProvider = (props) => {
   const [textPosition, setTextPosition] = useState('center'); // 'center', 'flex-end', 'flex-start', 'expand'
   const [fontSize, setFontSize] = useState(0.2); // 0.2 ~ 1 (5)
   const [backgroundAlpha, setBackgroundAlpha] = useState(0.3);
+  // const [backgroundColor, setBackgroundColor] = useState('black');
   return (
     <TextContext.Provider
       value={{
@@ -28,6 +29,7 @@ export default TextProvider = (props) => {
         textPosition, setTextPosition,
         fontSize, setFontSize,
         backgroundAlpha, setBackgroundAlpha,
+        // backgroundColor, setBackgroundColor,
         fontColor, setFontColor,
       }}
     >

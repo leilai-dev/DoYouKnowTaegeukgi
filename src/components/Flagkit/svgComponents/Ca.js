@@ -1,28 +1,19 @@
 import React from 'react'
-import Svg, { Defs, LinearGradient, Stop, G, Path } from 'react-native-svg'
+import Svg, { Path, } from 'react-native-svg'
 
-const SvgCa = props => (
-    <Svg viewBox="0 0 21 15" width={21} height={15} {...props}>
-        <Defs>
-            <LinearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="CA_svg__a">
-                <Stop stopColor="#FFF" offset="0%" />
-                <Stop stopColor="#F0F0F0" offset="100%" />
-            </LinearGradient>
-            <LinearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="CA_svg__b">
-                <Stop stopColor="#FF3131" offset="0%" />
-                <Stop stopColor="red" offset="100%" />
-            </LinearGradient>
-        </Defs>
-        <G fill="none" fillRule="evenodd">
-            <Path fill="url(#CA_svg__a)" d="M0 0h21v15H0z" />
-            <Path fill="url(#CA_svg__b)" d="M10 0h11v15H10zM0 0h7v15H0z" />
-            <Path fill="url(#CA_svg__a)" d="M6 0h9v15H6z" />
-            <Path
-                d="M11.674 7.326l.652-.652a.251.251 0 0 1 .355.007L13 7l1-.5-.5 1 .32.32a.247.247 0 0 1 .008.352L12.5 9.5H11l-.25 1.5h-.5L10 9.5H8.5L7.172 8.172a.253.253 0 0 1 .009-.353L7.5 7.5l-.5-1L8 7l.32-.32a.249.249 0 0 1 .354-.006l.652.652c.096.096.152.063.124-.075L9 5l1 .5.5-1.5.5 1.5 1-.5-.45 2.251c-.029.142.028.171.124.075z"
-                fill="url(#CA_svg__b)"
-            />
-        </G>
-    </Svg>
-)
-
+const SvgCa = props => {
+    return (
+      <Svg width={1200} height={600} viewBox="0 0 9600 4800" {...props}>
+        <Path
+          fill="#d52b1e"
+          d="M0 0h2400l99 99h4602l99-99h2400v4800H7200l-99-99H2499l-99 99H0z"
+        />
+        <Path
+          fill="#fff"
+          d="M2400 0h4800v4800H2400zm2490 4430l-45-863a95 95 0 01111-98l859 151-116-320a65 65 0 0120-73l941-762-212-99a65 65 0 01-34-79l186-572-542 115a65 65 0 01-73-38l-105-247-423 454a65 65 0 01-111-57l204-1052-327 189a65 65 0 01-91-27l-332-652-332 652a65 65 0 01-91 27l-327-189 204 1052a65 65 0 01-111 57l-423-454-105 247a65 65 0 01-73 38l-542-115 186 572a65 65 0 01-34 79l-212 99 941 762a65 65 0 0120 73l-116 320 859-151a95 95 0 01111 98l-45 863z"
+        />
+      </Svg>
+    )
+  }
+  
 export default SvgCa

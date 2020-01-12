@@ -68,7 +68,7 @@ export const FlagListScreen = ({ navigation }) => {
         placeholder={'국가 검색 (English only)'}
         onChangeText={(e) => {
           setCountryName(e);
-          setFilterData(data.filter(elem => elem.countryName.includes(countryName)));
+          setFilterData(data.filter(elem => elem.countryName.toLowerCase().includes(countryName)));
         }}
         onSubmitEditing={(e) => {
           setFilterData(data.filter(elem => elem.countryName.toLowerCase().includes(countryName.toLowerCase())));
