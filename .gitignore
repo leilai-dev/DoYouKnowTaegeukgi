@@ -68,3 +68,8 @@ android/app/google-services.json
 googleServiceConfig.js
 
 firebase.json
+
+android/app/release/
+src/utils/i18n/credentials.json
+src/utils/i18n/token.json
+android/app/private_key.pepk
